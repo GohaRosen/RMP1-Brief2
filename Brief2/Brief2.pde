@@ -1,15 +1,11 @@
 import processing.video.*;
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.spi.*;
-import ddf.minim.signals.*;
-import ddf.minim.ugens.*;
-import ddf.minim.effects.*;
+import processing.sound.*;
 
 Movie myMovie;
-Minim minim;
-AudioInput input;
 FFT fft;
+AudioIn in;
+int bands = 512;
+float[] spectrum = new float[bands];
 
 XML xml;
 color[] colours;
@@ -22,8 +18,13 @@ void setup(){
   myMovie = new Movie(this, "Gryffin, Bipolar Sunshine - Whole Heart (Audio).mp4");
   myMovie.loop();
   
-  minim = new Minim(this);
-  input = minim.getLineIn();
+  
+  fft = new FFT(this, bands);
+  in = new AudioIn(this, 0);
+  
+  in.start();       // start the Audio Input
+  fft.input(in);    // patch the AudioIn
+  
   
   xml  = loadXML("colorFile.xml");
   XML[] children = xml.getChildren("color");
@@ -50,32 +51,12 @@ void draw(){
   image(myMovie,0,0,width,height);  // video
   rect(0, 0, 1600, 800);            // shape covering the video
   
-   fft = new FFT(input.bufferSize(), input.sampleRate());
-   println(input.bufferSize());
-   println(input.sampleRate());
+    fft.analyze(spectrum);
+
+  for(int i = 0; i < bands; i++){
+  // The result of the FFT is normalized
+  // draw the line for frequency band i scaling it up by 5 to get more amplitude.
+  alpha =  spectrum[i]/3 ;
+  } 
    
-
-}
-
-void drawFFT() {
-  background(0);
-  stroke(255);
-  float fAmp = 0.0;
-  float fFreq = 0.0;
-  int fBand = 0;
-  
-  fft = new FFT(input.bufferSize(), input.sampleRate());
- 
-
-  fft.forward( input.mix );
-  
-  for(int i = 0; i < fft.specSize(); i++) {
-    // draw the line for frequency band i, scaling it up a bit so we can see it
-    line( i, height, i, height - fft.getBand(i)*8 );
-    
-    if (fAmp < fft.getBand(i)) {
-      fAmp = fft.getBand(i);
-      fBand = i;
-    }
   }
-}
