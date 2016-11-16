@@ -74,7 +74,6 @@ void draw(){
   else if(alpha > 30) {
     player.unmute();
   }
-  println(alpha);
   
  //setting colour of the layer covering the video by taking random value from randomPick variable and setting alpha
  //so when levels are low the layer opacity is high and when levels are high the opacity goes down
