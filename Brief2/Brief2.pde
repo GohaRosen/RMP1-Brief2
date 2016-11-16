@@ -64,10 +64,21 @@ void draw(){
   image(myMovie,0,0,width,height);  // video
   rect(0, 0, 1600, 800);            // shape covering the video
 
-  alpha = in.left.level() * 400; //levels go from 0-1 so I had to multiply it to see result in changing alpha
+  //levels go from 0-1 so I had to multiply it to see result in changing alpha
+  //in college levels had to be 2000, on my computer 400 is enough
+  alpha = in.left.level() * 400; 
 
+   if( alpha <= 30){
+    player.mute();
+  } 
+  else if(alpha > 30) {
+    player.unmute();
+  }
+  println(alpha);
+  
  //setting colour of the layer covering the video by taking random value from randomPick variable and setting alpha
  //so when levels are low the layer opacity is high and when levels are high the opacity goes down
   fill(red(colours[randomPick]), green(colours[randomPick]), blue(colours[randomPick]), 256-alpha);
 
-  }
+ 
+ }
