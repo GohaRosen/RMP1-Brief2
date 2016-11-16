@@ -6,6 +6,8 @@ import ddf.minim.*;
 Movie myMovie;
 Minim minim;
 AudioInput in;
+AudioPlayer player;
+
 
 //declaring variables
 XML xml;  
@@ -18,9 +20,13 @@ void setup(){
   size(1600,800);
   
   // loading the video  
-  myMovie = new Movie(this, "Gryffin, Bipolar Sunshine - Whole Heart (Audio).mp4");
+  myMovie = new Movie(this, "Gryffin, Bipolar Sunshine - Whole Heart (Video).mp4");
   //making it loop so it plays indefinite
   myMovie.loop();
+  
+  minim = new Minim(this);
+  player = minim.loadFile("Gryffin, Bipolar Sunshine - Whole Heart (Audio)_1.mp3");
+  player.loop();
   
   //loading xml file 
   xml  = loadXML("colorFile.xml");
