@@ -24,8 +24,11 @@ void setup(){
   //making it loop so it plays indefinite
   myMovie.loop();
   
+  //this will load the files from data folder
   minim = new Minim(this);
+  //assigning mp3 track to player
   player = minim.loadFile("Gryffin, Bipolar Sunshine - Whole Heart (Audio)_1.mp3");
+  //start playing the audio, loop() will play indefinite
   player.loop();
   
   //loading xml file 
@@ -68,6 +71,7 @@ void draw(){
   //in college levels had to be 2000, on my computer 400 is enough
   alpha = in.left.level() * 400; 
 
+  //this if statement controls playback of the audio file
    if( alpha <= 30){
     player.mute();
   } 
