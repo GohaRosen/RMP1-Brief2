@@ -2,7 +2,7 @@
 
 <colors>
    <color id="0" hex="#4C9900" r="76" g="153" b="0">Green</color>
-   <color id="1" hex="#FFFF00" r="255" g="255" b="0">Yellow</color>
+   <color id="1" hex="#FFFF00" r="255" g="204" b="0">Yellow</color>
    <color id="2" hex="#00CCCC" r="0" g="204" b="204">Blue</color>
    <color id="3" hex="#4C0099" r="76" g="0" b="153">Purple</color>
    <color id="4" hex="#CC0066" r="204" g="0" b="102">Pink</color>
